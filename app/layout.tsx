@@ -1,10 +1,28 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { Space_Grotesk, Public_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
+const displayFont = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['500', '600', '700'],
+})
+const bodyFont = Public_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  weight: ['400', '500', '600'],
+})
+const monoFont = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  weight: ['400', '500'],
+})
+
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'OferTV — Estúdio de Ofertas',
+  description:
+    'Editor de cartazes promocionais e player de sinalização digital para varejo.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -39,8 +57,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html
+      lang="pt-BR"
+      className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} bg-paper-50`}
+    >
+      <body className="font-body antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
